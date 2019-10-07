@@ -15,12 +15,21 @@ function App() {
 
 	const addItem = item => {
 		// add the given item to the cart
-		setCart([...cart,item])
+		if(cart.length===0){
+			setCart([...cart,item])
+	}else{
+			for(let i=0; i<cart.length; i++ ){
+					if (item.id===cart[i].id){
+							return null
+					}
+			}
+			setCart([...cart,item])
+	}
 		
 	};
 	const removeItem = id => {
 		console.log('id',id);
-		setCart(cart.filter(remove=> remove.id !== id))
+		setCart(cart.filter(item=> item.id !== id))
 	}
 
 	return (
